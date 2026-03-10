@@ -1,26 +1,26 @@
 class Shellfie < Formula
   desc "Transform terminal output into beautiful SVG images"
   homepage "https://github.com/tool3/shellfie-cli"
-  version "2.0.14"
+  version "2.0.15"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.14/shellfie-darwin-arm64.tar.gz"
-      sha256 "a56551fa6532d7b9004c69a53fa0dddb28c8904d5ad6632274c766c1e1b873f6"
+      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.15/shellfie-darwin-arm64.tar.gz"
+      sha256 "2b5d50bc0a54bac8ed421ae79bc5801c8b306fa7ae3b3fca9e2f04154c42bf0d"
     else
-      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.14/shellfie-darwin-x64.tar.gz"
-      sha256 "3835d5175d9aa8d4afa6bafdfa67367c616de3f095d837dd4e7bc055f8e2632c"
+      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.15/shellfie-darwin-x64.tar.gz"
+      sha256 "40a8081185cfacb5230e097f3e3bba0aeaa02b84ad7d9d3491f8e3a8f63b8708"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.14/shellfie-linux-arm64.tar.gz"
-      sha256 "5a8e3daa1f34e485a66b837ed3455147d91867ca00de5d46d6befb1d98b24c24"
+      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.15/shellfie-linux-arm64.tar.gz"
+      sha256 "872970b2b8c606a2a57a24a0d5e677d57de5a74b08f5149562feca5172b2bd9d"
     else
-      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.14/shellfie-linux-x64.tar.gz"
-      sha256 "a68c11074b5dbb9391a51bc3a7de42b0d7dd07cc99740edfbe00f0da83dd0ca4"
+      url "https://github.com/tool3/shellfie-cli/releases/download/v2.0.15/shellfie-linux-x64.tar.gz"
+      sha256 "6667e70cfda3e6a236b8908109aaf786b19820747171f494335fe1a444de95a3"
     end
   end
 
