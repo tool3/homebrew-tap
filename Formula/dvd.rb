@@ -1,5 +1,5 @@
-class dvd < Formula
-  desc "Create animated SVGs from code or stdin"
+class Dvd < Formula
+  desc "Create beautiful animated SVGs"
   homepage "https://github.com/tool3/dvd"
   version "VERSION_PLACEHOLDER"
   license "MIT"

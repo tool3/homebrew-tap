@@ -18,13 +18,16 @@ jobs:
         run: |
           FORMULA="${{ github.event.client_payload.formula }}"
           VERSION="${{ github.event.client_payload.version }}"
-          SHA_ARM64="${{ github.event.client_payload.sha_arm64 }}"
-          SHA_X64="${{ github.event.client_payload.sha_x64 }}"
+          REPO="${{ github.event.client_payload.repo }}"
 
-          echo "Updating $FORMULA to version $VERSION"
+          echo "Updating $FORMULA to version $VERSION (repo: $REPO)"
 
-          # Download all release assets to get checksums
-          REPO="tool3/${FORMULA}-cli"
+          FORMULA_FILE="Formula/${FORMULA}.rb"
+
+          if [ ! -f "$FORMULA_FILE" ]; then
+            echo "Error: Formula file $FORMULA_FILE not found"
+            exit 1
+          fi
 
           # Get all checksums from the release
           CHECKSUMS=$(curl -fsSL "https://github.com/${REPO}/releases/download/v${VERSION}/checksums.txt")
@@ -34,64 +37,44 @@ jobs:
           SHA_LINUX_ARM64=$(echo "$CHECKSUMS" | grep "linux-arm64.tar.gz" | cut -d ' ' -f 1)
           SHA_LINUX_X64=$(echo "$CHECKSUMS" | grep "linux-x64.tar.gz" | cut -d ' ' -f 1)
 
-          # Create the formula
-          cat > "Formula/${FORMULA}.rb" << 'FORMULA_EOF'
-          class Shellfie < Formula
-            desc "Transform terminal output into beautiful SVG images"
-            homepage "https://github.com/tool3/shellfie-cli"
-            version "VERSION_PLACEHOLDER"
-            license "MIT"
+          # Get the current version from the formula
+          OLD_VERSION=$(grep -m1 '^\s*version ' "$FORMULA_FILE" | sed 's/.*"\(.*\)".*/\1/')
+          echo "Updating from $OLD_VERSION to $VERSION"
 
-            on_macos do
-              if Hardware::CPU.arm?
-                url "https://github.com/tool3/shellfie-cli/releases/download/vVERSION_PLACEHOLDER/shellfie-darwin-arm64.tar.gz"
-                sha256 "SHA_DARWIN_ARM64_PLACEHOLDER"
-              else
-                url "https://github.com/tool3/shellfie-cli/releases/download/vVERSION_PLACEHOLDER/shellfie-darwin-x64.tar.gz"
-                sha256 "SHA_DARWIN_X64_PLACEHOLDER"
-              end
-            end
+          # Update version
+          sed -i "s/version \"${OLD_VERSION}\"/version \"${VERSION}\"/" "$FORMULA_FILE"
 
-            on_linux do
-              if Hardware::CPU.arm?
-                url "https://github.com/tool3/shellfie-cli/releases/download/vVERSION_PLACEHOLDER/shellfie-linux-arm64.tar.gz"
-                sha256 "SHA_LINUX_ARM64_PLACEHOLDER"
-              else
-                url "https://github.com/tool3/shellfie-cli/releases/download/vVERSION_PLACEHOLDER/shellfie-linux-x64.tar.gz"
-                sha256 "SHA_LINUX_X64_PLACEHOLDER"
-              end
-            end
+          # Update download URLs (replace old version in URLs)
+          sed -i "s|/download/v${OLD_VERSION}/|/download/v${VERSION}/|g" "$FORMULA_FILE"
 
-            def install
-              if Hardware::CPU.arm?
-                if OS.mac?
-                  bin.install "shellfie-darwin-arm64" => "shellfie"
-                else
-                  bin.install "shellfie-linux-arm64" => "shellfie"
-                end
-              else
-                if OS.mac?
-                  bin.install "shellfie-darwin-x64" => "shellfie"
-                else
-                  bin.install "shellfie-linux-x64" => "shellfie"
-                end
-              end
-            end
+          # Update sha256 checksums in order of appearance
+          # The order in the formula is: darwin-arm64, darwin-x64, linux-arm64, linux-x64
+          python3 - "$FORMULA_FILE" "$SHA_DARWIN_ARM64" "$SHA_DARWIN_X64" "$SHA_LINUX_ARM64" "$SHA_LINUX_X64" << 'PYEOF'
+          import sys
+          import re
 
-            test do
-              assert_match version.to_s, shell_output("#{bin}/shellfie --version")
-            end
-          end
-          FORMULA_EOF
+          formula_file = sys.argv[1]
+          new_shas = sys.argv[2:6]
 
-          # Replace placeholders
-          sed -i "s/VERSION_PLACEHOLDER/${VERSION}/g" "Formula/${FORMULA}.rb"
-          sed -i "s/SHA_DARWIN_ARM64_PLACEHOLDER/${SHA_DARWIN_ARM64}/g" "Formula/${FORMULA}.rb"
-          sed -i "s/SHA_DARWIN_X64_PLACEHOLDER/${SHA_DARWIN_X64}/g" "Formula/${FORMULA}.rb"
-          sed -i "s/SHA_LINUX_ARM64_PLACEHOLDER/${SHA_LINUX_ARM64}/g" "Formula/${FORMULA}.rb"
-          sed -i "s/SHA_LINUX_X64_PLACEHOLDER/${SHA_LINUX_X64}/g" "Formula/${FORMULA}.rb"
+          with open(formula_file, 'r') as f:
+              content = f.read()
 
-          cat "Formula/${FORMULA}.rb"
+          sha_pattern = re.compile(r'sha256 "[a-f0-9]{64}"')
+          matches = list(sha_pattern.finditer(content))
+
+          if len(matches) != len(new_shas):
+              print(f"Error: found {len(matches)} sha256 entries but expected {len(new_shas)}")
+              sys.exit(1)
+
+          # Replace in reverse order to preserve positions
+          for match, new_sha in reversed(list(zip(matches, new_shas))):
+              content = content[:match.start()] + f'sha256 "{new_sha}"' + content[match.end():]
+
+          with open(formula_file, 'w') as f:
+              f.write(content)
+          PYEOF
+
+          cat "$FORMULA_FILE"
 
       - name: Commit and push
         run: |

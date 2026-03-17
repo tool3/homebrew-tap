@@ -1,5 +1,5 @@
 class Shellfie < Formula
-  desc "Transform terminal output into beautiful SVG images"
+  desc "Transform terminal output into beautiful SVGs"
   homepage "https://github.com/tool3/shellfie-cli"
   version "2.2.0"
   license "MIT"
