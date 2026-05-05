@@ -13,17 +13,23 @@ brew tap tool3/tap
 | Formula | Description | Install |
 |---------|-------------|---------|
 | shellfie | Transform terminal output into beautiful SVG images | `brew install tool3/tap/shellfie` |
+| dvd | Transform terminal output into beautiful animated SVGs | `brew install tool3/tap/dvd` |
 
 ## Quick Install (without tapping)
 
+### shellfie
 ```bash
 brew install tool3/tap/shellfie
 ```
 
-## Usage
+#### Usage
+See [shellfie-cli](https://github.com/tool3/shellfie-cli) repo for all usage information
 
-After installation, run:
-
+### dvd
 ```bash
-echo "Hello, World!" | shellfie -o hello.svg
+brew install tool3/tap/dvd
 ```
+
+#### Usage
+See [dvd-cli](https://github.com/tool3/dvd-cli) repo for all usage information
+
