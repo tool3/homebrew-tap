@@ -1,6 +1,6 @@
 class Dvd < Formula
   desc "Create beautiful animated SVGs"
-  homepage "https://github.com/tool3/dvd"
+  homepage "https://github.com/tool3/dvd-cli"
   version "VERSION_PLACEHOLDER"
   license "MIT"
 
