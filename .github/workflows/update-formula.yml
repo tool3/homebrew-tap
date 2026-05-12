@@ -59,7 +59,7 @@ jobs:
           with open(formula_file, 'r') as f:
               content = f.read()
 
-          sha_pattern = re.compile(r'sha256 "[a-f0-9]{64}"')
+          sha_pattern = re.compile(r'sha256 "[^"]+"')
           matches = list(sha_pattern.finditer(content))
 
           if len(matches) != len(new_shas):
