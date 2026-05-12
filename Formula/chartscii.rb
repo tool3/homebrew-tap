@@ -7,20 +7,20 @@ class Chartscii < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/tool3/chartscii/releases/download/vVERSION_PLACEHOLDER/chartscii-darwin-arm64.tar.gz"
-      sha256 "SHA_ARM64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     else
       url "https://github.com/tool3/chartscii/releases/download/vVERSION_PLACEHOLDER/chartscii-darwin-x64.tar.gz"
-      sha256 "SHA_X64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/tool3/chartscii/releases/download/vVERSION_PLACEHOLDER/chartscii-linux-arm64.tar.gz"
-      sha256 "SHA_LINUX_ARM64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     else
       url "https://github.com/tool3/chartscii/releases/download/vVERSION_PLACEHOLDER/chartscii-linux-x64.tar.gz"
-      sha256 "SHA_LINUX_X64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 

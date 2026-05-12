@@ -7,20 +7,20 @@ class Dvd < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/tool3/dvd/releases/download/vVERSION_PLACEHOLDER/dvd-darwin-arm64.tar.gz"
-      sha256 "SHA_ARM64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     else
       url "https://github.com/tool3/dvd/releases/download/vVERSION_PLACEHOLDER/dvd-darwin-x64.tar.gz"
-      sha256 "SHA_X64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/tool3/dvd/releases/download/vVERSION_PLACEHOLDER/dvd-linux-arm64.tar.gz"
-      sha256 "SHA_LINUX_ARM64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     else
       url "https://github.com/tool3/dvd/releases/download/vVERSION_PLACEHOLDER/dvd-linux-x64.tar.gz"
-      sha256 "SHA_LINUX_X64_PLACEHOLDER"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 
