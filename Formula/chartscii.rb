@@ -1,26 +1,26 @@
 class Chartscii < Formula
   desc "Create beautiful ascii charts"
   homepage "https://github.com/tool3/chartscii-cli"
-  version "4.0.1"
+  version "4.0.2"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/chartscii/releases/download/v4.0.1/chartscii-darwin-arm64.tar.gz"
-      sha256 "e2382d400e988686678f73b969ec91139a5d1ebc603fc8f319490440d8e6cd0c"
+      url "https://github.com/tool3/chartscii/releases/download/v4.0.2/chartscii-darwin-arm64.tar.gz"
+      sha256 "a5483c5a4c223a7e6c5ca18b99e71d46e6bedfecb8721e8df9d831b84b767de9"
     else
-      url "https://github.com/tool3/chartscii/releases/download/v4.0.1/chartscii-darwin-x64.tar.gz"
-      sha256 "3008f724b3f033b74d02305b37c689b03b265e0c137cf49528abc71b1cc8de09"
+      url "https://github.com/tool3/chartscii/releases/download/v4.0.2/chartscii-darwin-x64.tar.gz"
+      sha256 "2c13906edd4bff89171d52ccb1ddaddd07252cb77503e8127a3a9a70019cf75e"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/chartscii/releases/download/v4.0.1/chartscii-linux-arm64.tar.gz"
-      sha256 "866db7357fb9b05b227825edd023f7826fa3314cfaa478bce3692367c3743167"
+      url "https://github.com/tool3/chartscii/releases/download/v4.0.2/chartscii-linux-arm64.tar.gz"
+      sha256 "fa3a79ee7e26ced5d7d7838706f3cda41b2b1ee190be8091c70c6ad97f22fc9e"
     else
-      url "https://github.com/tool3/chartscii/releases/download/v4.0.1/chartscii-linux-x64.tar.gz"
-      sha256 "481bd43645350ba1b8ef0e4a3ee36851a5fa1a7a5bea31340c165582b859b924"
+      url "https://github.com/tool3/chartscii/releases/download/v4.0.2/chartscii-linux-x64.tar.gz"
+      sha256 "2eff743a5c9225f9a87d271488625fe5ad58daf4c488a3157a03cdf13847d667"
     end
   end
 
