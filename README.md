@@ -16,6 +16,12 @@ brew tap tool3/tap
 | dvd       | Transform terminal output into beautiful animated SVGs | `brew install tool3/tap/dvd`       |
 | chartscii | Transform terminal output into beautiful charts        | `brew install tool3/tap/chartscii` |
 
+# Available Casks
+
+| Cask | Description                       | Install                                  |
+| ---- | --------------------------------- | ---------------------------------------- |
+| fefe | Desktop UI for ffmpeg (macOS app) | `brew install --cask tool3/tap/fefe`     |
+
 # Quick Install (without tapping)
 
 ## shellfie
