@@ -1,26 +1,26 @@
 class Dvd < Formula
   desc "Create beautiful animated SVGs"
   homepage "https://github.com/tool3/dvd-cli"
-  version "1.4.0"
+  version "1.4.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/dvd/releases/download/v1.4.0/dvd-darwin-arm64.tar.gz"
-      sha256 "a25525657912b5db7e82e8fc8d0012441ac0a7350fd8b6b67b3737de0598df51"
+      url "https://github.com/tool3/dvd/releases/download/v1.4.1/dvd-darwin-arm64.tar.gz"
+      sha256 "157ec7c6f452cdef198c289f7a4671ff86347496138fecbaa3fb4026fdfb44af"
     else
-      url "https://github.com/tool3/dvd/releases/download/v1.4.0/dvd-darwin-x64.tar.gz"
-      sha256 "ce4ebe6edb88c57c650601891221242c3cdc590720ea933282c0ce6efb11f74b"
+      url "https://github.com/tool3/dvd/releases/download/v1.4.1/dvd-darwin-x64.tar.gz"
+      sha256 "686d3b59fa46eaccedcc6011aec3ae1a988ffcd67d3aa4b95dc595a3cabfff90"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/tool3/dvd/releases/download/v1.4.0/dvd-linux-arm64.tar.gz"
-      sha256 "7a77eef3177ba025ab2c7ee1e5e32e168db2a723bd2e6e5dc610b01bf84885a0"
+      url "https://github.com/tool3/dvd/releases/download/v1.4.1/dvd-linux-arm64.tar.gz"
+      sha256 "6eb779a7ac21c936ef586e9ce7d3a5b41a05be99d911db6ff9f2ca895200d578"
     else
-      url "https://github.com/tool3/dvd/releases/download/v1.4.0/dvd-linux-x64.tar.gz"
-      sha256 "7e02efa070c33a699af7d0fa8bea473e80ab48a66cf1e6a9de2db7ad859b7bca"
+      url "https://github.com/tool3/dvd/releases/download/v1.4.1/dvd-linux-x64.tar.gz"
+      sha256 "4f35e104259034622331b31329148f9751f0b10e111cd6bd3d912379df482e9a"
     end
   end
 
